@@ -50,8 +50,8 @@ def updateRRD(host, version, community, port):
         paquetes_unicast_interfaz = int(snmpGet(community, host, '1.3.6.1.2.1.2.2.1.17.'+port))
         paquetes_input_ipv4 = int(snmpGet(community, host, '1.3.6.1.2.1.4.3.0'))
         mensajes_icmmp_echo = int(snmpGet(community, host, '1.3.6.1.2.1.5.8.0'))
-        total_input_traffic = int(snmpGet(community, host, '1.3.6.1.2.1.6.10.0'))
-        datagrama_udp = 0
+        total_input_traffic = int(snmpGet(community, host, '1.3.6.1.2.1.6.10.0')) 
+        datagrama_udp = int(snmpGet(community, host, '1.3.6.1.2.1.7.4.0'))
         valor = "N:" + str(paquetes_unicast_interfaz) + ':' + str(paquetes_input_ipv4) + ':' + str(mensajes_icmmp_echo) + ':' + str(total_input_traffic) + ':' + str(datagrama_udp)
         rrdtool.update(host + ".rrd", valor)
         rrdtool.dump(host + ".rrd", host + ".xml")

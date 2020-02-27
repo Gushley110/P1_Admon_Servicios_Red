@@ -12,8 +12,10 @@ def addAgent():
     archivo.write(linea)
     archivo.close()
     SNMPAdmin.createRRD(direccion)
+
     hilo = threading.Thread(target=SNMPAdmin.updateRRD, args=(direccion, version, comunidad, puerto))
     hilo.start()
+    
     print("Agent added\n")
 
 def deleteAgent():
